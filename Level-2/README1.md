@@ -55,6 +55,23 @@ Return ans = -321
 
 This solution only works for positive integers. If x is negative, the function will return 0 immediately.
 
+class Solution {
+public:
+    int reverse(int x) {
+        int ans = 0;  // Initialize ans to 0. This will store the reversed number.
+        while(x > 0){  // Loop until x is positive.
+            int rem = x % 10;  // Extract the last digit of x using x % 10.
+            x = x / 10;  // Remove the last digit from x using x / 10.
+            if(ans > INT_MAX / 10 || ans < INT_MIN / 10){  // Check if multiplying ans by 10 would cause overflow. If it does, return 0.
+                return 0;
+            }
+            ans = ans * 10 + rem;  // Add the extracted digit to ans by ans = ans * 10 + rem.
+        }
+        return ans;  // After the loop completes, ans contains the reversed integer.
+    }
+};
+
+
 ### Dry Run
 
 Example: x = 123
